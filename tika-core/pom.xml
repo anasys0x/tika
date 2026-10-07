@@ -407,8 +407,8 @@
       <id>ift3913-chatunitest</id>
       <properties>
         <ift3913.model>code-llama</ift3913.model>
-        <ift3913.testOutput>${project.basedir}/../ift3913/generated/raw</ift3913.testOutput>
-        <ift3913.tmpOutput>${project.basedir}/../ift3913/generated/logs</ift3913.tmpOutput>
+        <ift3913.testOutput>${project.build.directory}/chatunitest/raw</ift3913.testOutput>
+        <ift3913.tmpOutput>${project.build.directory}/chatunitest/logs</ift3913.tmpOutput>
       </properties>
       <dependencies>
         <!-- Keep the JUnit version of this Tika checkout instead of starter 1.4.0's old stack. -->

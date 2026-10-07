@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: org.apache.tika.io.TikaInputStreamTest
--------------------------------------------------------------------------------
-Tests run: 102, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 3.225 s -- in org.apache.tika.io.TikaInputStreamTest

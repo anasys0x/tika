@@ -25,10 +25,3 @@ tika-grpc/ignite
 # Python bytecode (e.g. from .skills scripts)
 __pycache__/
 *.pyc
-
-# ChatUniTest temporary context and bytecode; histories, raw tests and errors are kept.
-ift3913/generated/**/class-info/
-ift3913/generated/**/build/
-ift3913/generated/**/classMapping.json
-ift3913/generated/**/classNameMapping.json
-ift3913/generated/**/full.json
