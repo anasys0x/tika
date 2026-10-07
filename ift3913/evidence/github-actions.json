@@ -1,0 +1,15 @@
+{
+  "url": "https://github.com/anasys0x/tika/actions/runs/37666427788",
+  "commit": "a8ebf0c355ef2340b3311b6f2ef41bd03ea033d5",
+  "status": "completed",
+  "conclusion": "success",
+  "updatedAt": "2026-10-07T18:27:01Z",
+  "artifactUrl": "https://github.com/anasys0x/tika/actions/runs/37666427788/artifacts/11503472006",
+  "summaryLines": [
+    "2026-10-07T18:23:38.1158991Z Apache Maven 3.9.16 (2bdd9fddda4b155ebf8000e807eb73fd829a51d5)",
+    "2026-10-07T18:23:38.1161698Z Java version: 17.0.20.1, vendor: Eclipse Adoptium, runtime: /usr/lib/jvm/temurin-17-jdk-amd64",
+    "2026-10-07T18:26:51.8498980Z baseline-java17 {\"coverage\": {\"INSTRUCTION\": {\"covered\": 129, \"missed\": 35}, \"BRANCH\": {\"covered\": 14, \"missed\": 2}, \"LINE\": {\"covered\": 32, \"missed\": 8}, \"COMPLEXITY\": {\"covered\": 15, \"missed\": 3}, \"METHOD\": {\"covered\": 8, \"missed\": 2}, \"CLASS\": {\"covered\": 1, \"missed\": 0}}, \"mutations\": {\"SURVIVED\": 5, \"KILLED\": 19, \"NO_COVERAGE\": 9}, \"totalMutations\": 33, \"strictScore\": 57.58, \"tests\": {\"tests\": 749, \"failures\": 0, \"errors\": 0, \"skipped\": 2}}",
+    "2026-10-07T18:26:51.8501912Z ai {\"coverage\": {\"INSTRUCTION\": {\"covered\": 164, \"missed\": 0}, \"BRANCH\": {\"covered\": 16, \"missed\": 0}, \"LINE\": {\"covered\": 40, \"missed\": 0}, \"COMPLEXITY\": {\"covered\": 18, \"missed\": 0}, \"METHOD\": {\"covered\": 10, \"missed\": 0}, \"CLASS\": {\"covered\": 1, \"missed\": 0}}, \"mutations\": {\"SURVIVED\": 5, \"KILLED\": 28}, \"totalMutations\": 33, \"strictScore\": 84.85, \"tests\": {\"tests\": 763, \"failures\": 0, \"errors\": 0, \"skipped\": 2}}",
+    "2026-10-07T18:26:51.8504356Z final {\"coverage\": {\"INSTRUCTION\": {\"covered\": 164, \"missed\": 0}, \"BRANCH\": {\"covered\": 16, \"missed\": 0}, \"LINE\": {\"covered\": 40, \"missed\": 0}, \"COMPLEXITY\": {\"covered\": 18, \"missed\": 0}, \"METHOD\": {\"covered\": 10, \"missed\": 0}, \"CLASS\": {\"covered\": 1, \"missed\": 0}}, \"mutations\": {\"KILLED\": 33}, \"totalMutations\": 33, \"strictScore\": 100.0, \"tests\": {\"tests\": 767, \"failures\": 0, \"errors\": 0, \"skipped\": 2}}"
+  ]
+}

@@ -1,11 +1,11 @@
 # IFT3913 — Tâche 2 : tests de LookaheadInputStream dans Apache Tika
 
-Dernière mise à jour : **7 octobre 2026**. Classe retenue : `org.apache.tika.io.LookaheadInputStream`, module autorisé `tika-core`. Les phases locales sont terminées ; les informations du binôme et la validation GitHub Actions doivent encore être complétées.
+Dernière mise à jour : **7 octobre 2026**. Classe retenue : `org.apache.tika.io.LookaheadInputStream`, module autorisé `tika-core`. Les phases locales et la validation GitHub Actions ont réussi. La remise est préparée pour l’ouverture du 9 octobre 2026.
 
 | Nom complet | Identifiant GitHub |
 |---|---|
-| À compléter par l’utilisateur | anasys0x |
-| À compléter par le binôme | À compléter |
+| Mrani Alaoui Anas | Anasys0x |
+| Rachidi Aymane | Aymtrack |
 
 - [Fork](https://github.com/anasys0x/tika), branche `tache2`.
 - [README de remise sur cette branche](https://github.com/anasys0x/tika/blob/tache2/README.md).
@@ -274,7 +274,7 @@ Sur macOS, garder le capot ouvert ; `caffeinate` empêche la veille automatique.
 
 Le [workflow dédié](.github/workflows/ift3913-tache2.yml) utilise Temurin Java 17 et reproduit les trois phases avec `measure.sh`. Il exécute les nouveaux tests avec les originaux et publie les rapports en artefact. Le modèle et Ollama ne sont pas nécessaires en CI : les tests acceptés sont déjà versionnés.
 
-**Statut : validation locale réussie ; publication et exécution distante en préparation.** Aucun succès GitHub Actions n’est encore revendiqué. Le lien du run et le commit testé seront ajoutés après vérification.
+**GitHub Actions : réussi le 7 octobre 2026.** [Run nº 1](https://github.com/anasys0x/tika/actions/runs/37666427788), commit testé `a8ebf0c355ef2340b3311b6f2ef41bd03ea033d5`, job `tests` sur Linux/Temurin 17.0.20.1 et Maven 3.9.16. Les journaux confirment 749 → 763 → 767 tests (2 ignorés par phase), zéro échec/erreur, et les scores PIT 19/33 → 28/33 → 33/33. [Artefact des rapports](https://github.com/anasys0x/tika/actions/runs/37666427788/artifacts/11503472006) et [preuve persistante du run/synthèses](ift3913/evidence/github-actions.json). Les commits ultérieurs de documentation ne changent pas les tests validés par ce run.
 
 | Critère du barème | Poids | État et preuve |
 |---|---:|---|
@@ -285,9 +285,13 @@ Le [workflow dédié](.github/workflows/ift3913-tache2.yml) utilise Temurin Java
 | PIT originaux puis nouveaux tests | 15 % | Sections 1 et 6, trois XML contrôlés |
 | Documentation des mutants détectés | 15 % | Section 6, détecteurs et explications |
 | Tests manuels documentés | 10 % | Section 7 : noms, intentions, entrées et oracles |
-| Nouveaux tests réussis dans GitHub Actions | 10 % | Workflow préparé ; statut exact ci-dessus |
+| Nouveaux tests réussis dans GitHub Actions | 10 % | Réussi : 18 nouveaux tests, run et commit ci-dessus |
 
-Formalités restant à vérifier avec le binôme : noms complets/identifiants, première PR dans le dépôt du cours créant `tache2/NOM1_NOM2/readme.md`, puis seconde PR de remise indiquant le lien du fork et du README. Aucun nom ou état de PR ne sera inventé. L’échéance doit être vérifiée sur le plan du cours avant remise.
+Le binôme et les identifiants ci-dessus sont repris de la [PR d’inscription nº 1239](https://github.com/umontreal-diro/IFT3913/pull/1239), fusionnée le 2 octobre 2026. Le fichier accepté est `tache2/MRANI_ALAOUI-RACHIDI/readme.md` ; il faut conserver ce chemin exact. La première formalité est donc déjà réalisée.
+
+Les [instructions des PR](https://github.com/umontreal-diro/IFT3913/blob/2026/instructions-PR.md) précisent : « vous ne pouvez pas soumettre le lien vers votre référentiel Github avant le 9 octobre 2026 ». La remise finale ne sera donc pas envoyée le 7 octobre. Le [plan du cours](https://github.com/umontreal-diro/IFT3913/tree/2026) fixe la limite au **13 octobre 2026 à 17 h EDT**.
+
+Le [fichier de remise préparé](ift3913/remise/tache2/MRANI_ALAOUI-RACHIDI/readme.md) contient les deux liens à ajouter dans une seconde PR, à partir du 9 octobre. Le [corps de PR préparé](ift3913/remise/corps-pr.md) suit le modèle du cours. Cette préparation locale n’est pas une PR envoyée ni une remise effectuée.
 
 ## 10. Déclaration d’usage de l’IA
 

@@ -251,3 +251,21 @@ Cette entrée remplace l’état d’avancement de la section 9.
 - Métadonnées modèle relevées : Ollama 0.35.1, Qwen 14.8B Q4_K_M ; les deux noms Ollama ont le même digest.
 - Scripts de reproduction et de synthèse ajoutés dans `ift3913/scripts`. Le workflow reproduit les trois phases.
 - README réécrit comme documentation complète de remise, avec déclaration d’usage de l’IA. Les informations personnelles et la validation distante restent à compléter.
+
+### Publication et formalités vérifiées
+
+- Le script complet de reproduction a réussi localement, avec les mêmes scores 19/33, 28/33 et 33/33.
+- Commit de l’expérience : `a8ebf0c355ef2340b3311b6f2ef41bd03ea033d5`, publié sur `origin/tache2`.
+- GitHub Actions lancé : https://github.com/anasys0x/tika/actions/runs/37666427788 ; résultat en cours de vérification.
+- Première PR du binôme retrouvée : nº 1239, fusionnée le 2 octobre ; Mrani Alaoui Anas / Anasys0x et Rachidi Aymane / Aymtrack, chemin `tache2/MRANI_ALAOUI-RACHIDI/readme.md`.
+- Consigne supplémentaire vérifiée dans `instructions-PR.md` : remise des liens seulement à partir du 9 octobre 2026. Échéance : 13 octobre à 17 h EDT.
+- Fichier et corps de PR de remise préparés sous `ift3913/remise`, mais aucune soumission finale effectuée le 7 octobre.
+
+### État final du travail du 7 octobre
+
+- GitHub Actions nº 1 réussi : https://github.com/anasys0x/tika/actions/runs/37666427788.
+- Commit testé : `a8ebf0c355ef2340b3311b6f2ef41bd03ea033d5` ; Linux Temurin 17.0.20.1, Maven 3.9.16.
+- Trois phases confirmées dans le journal distant : 749/763/767 tests, 0 échec/erreur, 2 ignorés ; PIT 19/33, 28/33, 33/33.
+- Les 18 nouveaux tests sont donc validés en CI. L’artefact contient les rapports de tests, JaCoCo et PIT.
+- README complet et preuves versionnées ; les mises à jour finales sont documentaires.
+- À faire par le binôme : relire/comprendre le travail et envoyer la seconde PR de remise à partir du 9 octobre, avant le 13 octobre à 17 h EDT. Le fichier à soumettre est déjà préparé dans `ift3913/remise`.
