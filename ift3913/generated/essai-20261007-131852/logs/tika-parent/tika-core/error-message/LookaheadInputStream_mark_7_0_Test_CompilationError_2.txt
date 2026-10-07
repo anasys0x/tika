@@ -1,0 +1,61 @@
+package org.apache.tika.io;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.InputStream;
+
+public class LookaheadInputStream_mark_7_0_Test {
+
+    private LookaheadInputStream lookaheadInputStream;
+
+    private ByteArrayInputStream inputStream;
+
+    @BeforeEach
+    public void setUp() {
+        byte[] data = { 1, 2, 3, 4, 5 };
+        inputStream = new ByteArrayInputStream(data);
+        lookaheadInputStream = new LookaheadInputStream(inputStream, 5);
+    }
+
+    @Test
+    public void testMark() throws IOException, NoSuchMethodException, IllegalAccessException {
+        Method markMethod = LookaheadInputStream.class.getDeclaredMethod("mark", int.class);
+        markMethod.setAccessible(true);
+        // Read one byte to move position
+        lookaheadInputStream.read();
+        markMethod.invoke(lookaheadInputStream, 10);
+        Field markField = LookaheadInputStream.class.getDeclaredField("mark");
+        markField.setAccessible(true);
+        assertEquals(1, markField.get(lookaheadInputStream));
+    }
+
+    @Test
+    public void testReset() throws IOException, NoSuchMethodException, IllegalAccessException {
+        Method markMethod = LookaheadInputStream.class.getDeclaredMethod("mark", int.class);
+        Method resetMethod = LookaheadInputStream.class.getDeclaredMethod("reset");
+        markMethod.setAccessible(true);
+        resetMethod.setAccessible(true);
+        // Read one byte to move position
+        lookaheadInputStream.read();
+        markMethod.invoke(lookaheadInputStream, 10);
+        resetMethod.invoke(lookaheadInputStream);
+        Field positionField = LookaheadInputStream.class.getDeclaredField("position");
+        positionField.setAccessible(true);
+        assertEquals(0, positionField.get(lookaheadInputStream));
+    }
+}
+
+--------------------------------------------
+Error in LookaheadInputStream_mark_7_0_Test: line 34 : unreported exception java.lang.reflect.InvocationTargetException; must be caught or declared to be thrown
+Error in LookaheadInputStream_mark_7_0_Test: line 35 : unreported exception java.lang.NoSuchFieldException; must be caught or declared to be thrown
+Error in LookaheadInputStream_mark_7_0_Test: line 48 : unreported exception java.lang.reflect.InvocationTargetException; must be caught or declared to be thrown
+Error in LookaheadInputStream_mark_7_0_Test: line 49 : unreported exception java.lang.reflect.InvocationTargetException; must be caught or declared to be thrown
+Error in LookaheadInputStream_mark_7_0_Test: line 50 : unreported exception java.lang.NoSuchFieldException; must be caught or declared to be thrown

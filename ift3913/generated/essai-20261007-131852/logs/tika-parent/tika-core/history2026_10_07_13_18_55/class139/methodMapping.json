@@ -1,0 +1,62 @@
+{
+  "method0": {
+    "methodName": "close",
+    "signature": "close()",
+    "className": "LookaheadInputStream",
+    "packageName": "org.apache.tika.io"
+  },
+  "method1": {
+    "methodName": "fill",
+    "signature": "fill()",
+    "className": "LookaheadInputStream",
+    "packageName": "org.apache.tika.io"
+  },
+  "method2": {
+    "methodName": "read",
+    "signature": "read()",
+    "className": "LookaheadInputStream",
+    "packageName": "org.apache.tika.io"
+  },
+  "method3": {
+    "methodName": "read",
+    "signature": "read(byte[], int, int)",
+    "className": "LookaheadInputStream",
+    "packageName": "org.apache.tika.io"
+  },
+  "method4": {
+    "methodName": "skip",
+    "signature": "skip(long)",
+    "className": "LookaheadInputStream",
+    "packageName": "org.apache.tika.io"
+  },
+  "method5": {
+    "methodName": "available",
+    "signature": "available()",
+    "className": "LookaheadInputStream",
+    "packageName": "org.apache.tika.io"
+  },
+  "method6": {
+    "methodName": "markSupported",
+    "signature": "markSupported()",
+    "className": "LookaheadInputStream",
+    "packageName": "org.apache.tika.io"
+  },
+  "method7": {
+    "methodName": "mark",
+    "signature": "mark(int)",
+    "className": "LookaheadInputStream",
+    "packageName": "org.apache.tika.io"
+  },
+  "method8": {
+    "methodName": "reset",
+    "signature": "reset()",
+    "className": "LookaheadInputStream",
+    "packageName": "org.apache.tika.io"
+  },
+  "method9": {
+    "methodName": "LookaheadInputStream",
+    "signature": "LookaheadInputStream(InputStream, int)",
+    "className": "LookaheadInputStream",
+    "packageName": "org.apache.tika.io"
+  }
+}

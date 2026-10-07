@@ -1,0 +1,45 @@
+package org.apache.tika.io;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.lang.reflect.Method;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.InputStream;
+
+public class LookaheadInputStream_close_0_0_Test {
+
+    private LookaheadInputStream lookaheadInputStream;
+
+    private ByteArrayInputStream inputStream;
+
+    @BeforeEach
+    public void setUp() {
+        byte[] testData = "Hello, World!".getBytes();
+        inputStream = new ByteArrayInputStream(testData);
+        lookaheadInputStream = new LookaheadInputStream(inputStream, 10);
+    }
+
+    @Test
+    public void testClose() throws IOException, NoSuchMethodException, IllegalAccessException, java.lang.reflect.InvocationTargetException {
+        // Test when stream is not null
+        Method closeMethod = LookaheadInputStream.class.getDeclaredMethod("close");
+        closeMethod.setAccessible(true);
+        closeMethod.invoke(lookaheadInputStream);
+        assertNull(lookaheadInputStream.stream);
+        assertTrue(inputStream.markSupported());
+        assertEquals(0, inputStream.available());
+        // Test when stream is already null
+        closeMethod.invoke(lookaheadInputStream);
+        assertNull(lookaheadInputStream.stream);
+    }
+}
+
+--------------------------------------------
+Error in LookaheadInputStream_close_0_0_Test: line 8 : package org.mockito does not exist
+Error in LookaheadInputStream_close_0_0_Test: line 11 : package org.mockito.junit.jupiter does not exist
+Error in LookaheadInputStream_close_0_0_Test: line 6 : package org.mockito does not exist

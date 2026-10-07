@@ -1,0 +1,80 @@
+--- ift3913/generated/essai-20261007-131852/raw/tika-parent/tika-core/org/apache/tika/io/LookaheadInputStream_read_3_0_Test.java
++++ tika-core/src/ift3913-ai/java/org/apache/tika/io/LookaheadInputStream_read_3_0_Test.java
+@@ -1,16 +1,29 @@
++/*
++ * Licensed to the Apache Software Foundation (ASF) under one or more
++ * contributor license agreements.  See the NOTICE file distributed with
++ * this work for additional information regarding copyright ownership.
++ * The ASF licenses this file to You under the Apache License, Version 2.0
++ * (the "License"); you may not use this file except in compliance with
++ * the License.  You may obtain a copy of the License at
++ *
++ *     http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
+ package org.apache.tika.io;
+ 
+-import org.apache.tika.io.LookaheadInputStream;
++import static org.junit.jupiter.api.Assertions.assertArrayEquals;
++import static org.junit.jupiter.api.Assertions.assertEquals;
++
+ import java.io.ByteArrayInputStream;
+ import java.io.IOException;
+-import java.lang.reflect.Method;
+-import org.mockito.*;
+-import org.junit.jupiter.api.*;
+-import static org.mockito.Mockito.*;
+-import static org.junit.jupiter.api.Assertions.*;
+-import org.junit.jupiter.api.extension.ExtendWith;
+-import org.mockito.junit.jupiter.MockitoExtension;
+-import java.io.InputStream;
++
++import org.junit.jupiter.api.BeforeEach;
++import org.junit.jupiter.api.Test;
+ 
+ public class LookaheadInputStream_read_3_0_Test {
+ 
+@@ -20,7 +33,7 @@
+ 
+     @BeforeEach
+     public void setUp() {
+-        inputStream = new ByteArrayInputStream(new byte[] { 1, 2, 3, 4, 5 });
++        inputStream = new ByteArrayInputStream(new byte[]{ 1, 2, 3, 4, 5});
+         lookaheadInputStream = new LookaheadInputStream(inputStream, 5);
+     }
+ 
+@@ -29,7 +42,7 @@
+         byte[] buffer = new byte[5];
+         int bytesRead = lookaheadInputStream.read(buffer, 0, 5);
+         assertEquals(5, bytesRead);
+-        assertArrayEquals(new byte[] { 1, 2, 3, 4, 5 }, buffer);
++        assertArrayEquals(new byte[]{ 1, 2, 3, 4, 5}, buffer);
+         bytesRead = lookaheadInputStream.read(buffer, 0, 1);
+         assertEquals(-1, bytesRead);
+     }
+@@ -39,7 +52,7 @@
+         byte[] buffer = new byte[3];
+         int bytesRead = lookaheadInputStream.read(buffer, 0, 0);
+         assertEquals(0, bytesRead);
+-        assertArrayEquals(new byte[] { 0, 0, 0 }, buffer);
++        assertArrayEquals(new byte[]{ 0, 0, 0}, buffer);
+     }
+ 
+     @Test
+@@ -47,9 +60,9 @@
+         byte[] buffer = new byte[5];
+         int bytesRead = lookaheadInputStream.read(buffer, 2, 3);
+         assertEquals(3, bytesRead);
+-        assertArrayEquals(new byte[] { 0, 0, 1, 2, 3 }, buffer);
++        assertArrayEquals(new byte[]{ 0, 0, 1, 2, 3}, buffer);
+         bytesRead = lookaheadInputStream.read(buffer, 3, 2);
+         assertEquals(2, bytesRead);
+-        assertArrayEquals(new byte[] { 0, 0, 1, 4, 5 }, buffer);
++        assertArrayEquals(new byte[]{ 0, 0, 1, 4, 5}, buffer);
+     }
+ }

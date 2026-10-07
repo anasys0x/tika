@@ -1,0 +1,32 @@
+
+Test run finished after 21404 ms
+[         2 containers found      ]
+[         0 containers skipped    ]
+[         2 containers started    ]
+[         0 containers aborted    ]
+[         2 containers successful ]
+[         0 containers failed     ]
+[         6 tests found           ]
+[         0 tests skipped         ]
+[         6 tests started         ]
+[         0 tests aborted         ]
+[         3 tests successful      ]
+[         3 tests failed          ]
+
+
+Failures (3):
+  JUnit Jupiter:LookaheadInputStream_read_3_0_Test:testReadWithPartialBuffer()
+    MethodSource [className = 'org.apache.tika.io.LookaheadInputStream_read_3_0_Test', methodName = 'testReadWithPartialBuffer', methodParameterTypes = '']
+    => org.opentest4j.AssertionFailedError: expected: <2> but was: <-1>
+       org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:569)
+       org.apache.tika.io.LookaheadInputStream_read_3_0_Test.testReadWithPartialBuffer(LookaheadInputStream_read_3_0_Test.java:40)
+  JUnit Jupiter:LookaheadInputStream_read_3_0_Test:testReadWithBufferPartial()
+    MethodSource [className = 'org.apache.tika.io.LookaheadInputStream_read_3_0_Test', methodName = 'testReadWithBufferPartial', methodParameterTypes = '']
+    => org.opentest4j.AssertionFailedError: expected: <2> but was: <-1>
+       org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:569)
+       org.apache.tika.io.LookaheadInputStream_read_3_0_Test.testReadWithBufferPartial(LookaheadInputStream_read_3_0_Test.java:95)
+  JUnit Jupiter:LookaheadInputStream_read_3_0_Test:testReadWithMarkAndReset()
+    MethodSource [className = 'org.apache.tika.io.LookaheadInputStream_read_3_0_Test', methodName = 'testReadWithMarkAndReset', methodParameterTypes = '']
+    => org.opentest4j.AssertionFailedError: expected: <5> but was: <2>
+       org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:569)
+       org.apache.tika.io.LookaheadInputStream_read_3_0_Test.testReadWithMarkAndReset(LookaheadInputStream_read_3_0_Test.java:68)

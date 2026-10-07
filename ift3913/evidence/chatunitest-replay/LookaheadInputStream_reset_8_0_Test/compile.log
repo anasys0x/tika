@@ -1,0 +1,4 @@
+/private/tmp/ift3913-recovery/LookaheadInputStream_reset_8_0_Test/LookaheadInputStream_reset_8_0_Test.java:43: error: position has private access in LookaheadInputStream
+        assertEquals(3, lookaheadInputStream.position);
+                                            ^
+1 error

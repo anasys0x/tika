@@ -1,0 +1,7 @@
+/private/tmp/ift3913-recovery/LookaheadInputStream_close_0_0_Test/LookaheadInputStream_close_0_0_Test.java:33: error: stream has private access in LookaheadInputStream
+        assertNull(lookaheadInputStream.stream);
+                                       ^
+/private/tmp/ift3913-recovery/LookaheadInputStream_close_0_0_Test/LookaheadInputStream_close_0_0_Test.java:38: error: stream has private access in LookaheadInputStream
+        assertNull(lookaheadInputStream.stream);
+                                       ^
+2 errors

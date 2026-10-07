@@ -1,0 +1,53 @@
+package org.apache.tika.io;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.lang.reflect.Method;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.InputStream;
+
+public class LookaheadInputStream_mark_7_0_Test {
+
+    private LookaheadInputStream lookaheadInputStream;
+
+    private ByteArrayInputStream inputStream;
+
+    @BeforeEach
+    public void setUp() {
+        byte[] data = { 1, 2, 3, 4, 5 };
+        inputStream = new ByteArrayInputStream(data);
+        lookaheadInputStream = new LookaheadInputStream(inputStream, 5);
+    }
+
+    @Test
+    public void testMark() throws IOException, NoSuchMethodException, IllegalAccessException {
+        Method markMethod = LookaheadInputStream.class.getDeclaredMethod("mark", int.class);
+        markMethod.setAccessible(true);
+        // Read one byte to move position
+        lookaheadInputStream.read();
+        markMethod.invoke(lookaheadInputStream, 10);
+        assertEquals(1, lookaheadInputStream.mark);
+    }
+
+    @Test
+    public void testReset() throws IOException, NoSuchMethodException, IllegalAccessException {
+        Method markMethod = LookaheadInputStream.class.getDeclaredMethod("mark", int.class);
+        Method resetMethod = LookaheadInputStream.class.getDeclaredMethod("reset");
+        markMethod.setAccessible(true);
+        resetMethod.setAccessible(true);
+        // Read one byte to move position
+        lookaheadInputStream.read();
+        markMethod.invoke(lookaheadInputStream, 10);
+        resetMethod.invoke(lookaheadInputStream);
+        assertEquals(0, lookaheadInputStream.position);
+    }
+}
+
+--------------------------------------------
+Error in LookaheadInputStream_mark_7_0_Test: line 34 : mark has private access in org.apache.tika.io.LookaheadInputStream
+Error in LookaheadInputStream_mark_7_0_Test: line 47 : position has private access in org.apache.tika.io.LookaheadInputStream

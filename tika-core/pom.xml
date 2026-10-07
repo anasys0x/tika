@@ -119,10 +119,36 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- Required by the imports added to generated tests by ChatUniTest. -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
+      <version>${mockito-junit-jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <configuration>
+          <java>
+            <includes combine.self="override">
+              <include>src/main/java/**/*.java</include>
+              <include>src/test/java/**/*.java</include>
+              <include>src/ift3913-ai/java/**/*.java</include>
+              <include>src/ift3913-manual/java/**/*.java</include>
+            </includes>
+          </java>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
@@ -341,4 +367,124 @@
   <scm>
     <tag>3.0.0-rc1</tag>
   </scm>
+  <!-- IFT3913: opt-in experiments; the original test suite is the baseline. -->
+  <profiles>
+    <profile>
+      <id>ift3913-pit</id>
+      <properties>
+        <ift3913.classes>org.apache.tika.io.LookaheadInputStream</ift3913.classes>
+        <ift3913.stage>baseline</ift3913.stage>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>1.30.0</version>
+            <configuration>
+              <targetClasses>${ift3913.classes}</targetClasses>
+              <targetTests><param>org.apache.tika.*</param></targetTests>
+              <mutators><mutator>DEFAULTS</mutator></mutators>
+              <threads>2</threads>
+              <timeoutConstant>10000</timeoutConstant>
+              <outputFormats><param>HTML</param><param>XML</param></outputFormats>
+              <timestampedReports>false</timestampedReports>
+              <reportsDirectory>${project.build.directory}/pit-reports/${ift3913.stage}</reportsDirectory>
+              <failWhenNoMutations>true</failWhenNoMutations>
+            </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-junit5-plugin</artifactId>
+                <version>1.2.3</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>ift3913-chatunitest</id>
+      <properties>
+        <ift3913.model>code-llama</ift3913.model>
+        <ift3913.testOutput>${project.basedir}/../ift3913/generated/raw</ift3913.testOutput>
+        <ift3913.tmpOutput>${project.basedir}/../ift3913/generated/logs</ift3913.tmpOutput>
+      </properties>
+      <dependencies>
+        <!-- Keep the JUnit version of this Tika checkout instead of starter 1.4.0's old stack. -->
+        <dependency>
+          <groupId>org.junit.platform</groupId>
+          <artifactId>junit-platform-launcher</artifactId>
+          <version>${junit6.version}</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>io.github.zju-aces-ise</groupId>
+            <artifactId>chatunitest-maven-plugin</artifactId>
+            <version>2.1.1</version>
+            <configuration>
+              <apiKeys><apiKey>ollama</apiKey></apiKeys>
+              <model>${ift3913.model}</model>
+              <url>http://127.0.0.1:11434/v1/chat/completions</url>
+              <testNumber>1</testNumber>
+              <maxRounds>3</maxRounds>
+              <temperature>0.2</temperature>
+              <thread>false</thread>
+              <noExecution>false</noExecution>
+              <testOutput>${ift3913.testOutput}</testOutput>
+              <tmpOutput>${ift3913.tmpOutput}</tmpOutput>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>ift3913-ai</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <version>3.6.1</version>
+            <executions>
+              <execution>
+                <id>ift3913-ai-tests</id>
+                <phase>generate-test-sources</phase>
+                <goals><goal>add-test-source</goal></goals>
+                <configuration>
+                  <sources><source>src/ift3913-ai/java</source></sources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>ift3913-manual</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <version>3.6.1</version>
+            <executions>
+              <execution>
+                <id>ift3913-manual-tests</id>
+                <phase>generate-test-sources</phase>
+                <goals><goal>add-test-source</goal></goals>
+                <configuration>
+                  <sources><source>src/ift3913-manual/java</source></sources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
 </project>

@@ -1,0 +1,171 @@
+[INFO] Maveniverse Nisse 0.9.4 loaded
+[INFO] Nisse injecting 32 properties into User Properties
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for org.apache.tika:tika-parent:pom:4.0.0-SNAPSHOT
+[WARNING] 'version' contains an expression but should be a constant. @ org.apache.tika:tika-parent:${revision}, /Users/anasys/Desktop/tika/tika-parent/pom.xml, line 34, column 12
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for org.apache.tika:tika:pom:4.0.0-SNAPSHOT
+[WARNING] 'version' contains an expression but should be a constant. @ org.apache.tika:tika-parent:${revision}, /Users/anasys/Desktop/tika/tika-parent/pom.xml, line 34, column 12
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] No need for inlining
+[INFO] 
+[INFO] ---------------------< org.apache.tika:tika-core >----------------------
+[INFO] Building Apache Tika core 4.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] -------------------------------[ bundle ]-------------------------------
+[INFO] 
+[INFO] --- help:3.5.1:describe (default-cli) @ tika-core ---
+[INFO] Mojo: 'chatunitest:class'
+chatunitest:class
+  Description: (no description available)
+  Implementation: zju.cst.aces.ClassTestMojo
+  Language: java
+
+  Available parameters:
+
+    apiKeys
+      Required: true
+      User property: apiKeys
+      (no description available)
+
+    dependencyDepth (Default: 1)
+      User property: dependencyDepth
+      (no description available)
+
+    enableMerge (Default: true)
+      Alias: merge
+      User property: merge
+      (no description available)
+
+    enableMultithreading (Default: true)
+      Alias: thread
+      User property: thread
+      (no description available)
+
+    enableObfuscate (Default: false)
+      Alias: obfuscate
+      User property: obfuscate
+      (no description available)
+
+    enableRuleRepair (Default: true)
+      Alias: ruleRepair
+      User property: ruleRepair
+      (no description available)
+
+    examplePath (Default: ${project.basedir}/exampleUsage.json)
+      User property: examplePath
+      (no description available)
+
+    frequencyPenalty (Default: 0)
+      User property: frequencyPenalty
+      (no description available)
+
+    mavenHome (Default: ${maven.home})
+      User property: mavenHome
+      (no description available)
+
+    maxPromptTokens (Default: -1)
+      User property: maxPromptTokens
+      (no description available)
+
+    maxResponseTokens (Default: 1024)
+      User property: maxResponseTokens
+      (no description available)
+
+    maxRounds (Default: 5)
+      User property: maxRounds
+      (no description available)
+
+    maxThreads (Default: 0)
+      User property: maxThreads
+      (no description available)
+
+    minErrorTokens (Default: 500)
+      User property: minErrorTokens
+      (no description available)
+
+    model (Default: gpt-3.5-turbo)
+      User property: model
+      (no description available)
+
+    noExecution (Default: false)
+      User property: noExecution
+      (no description available)
+
+    obfuscateGroupIds
+      User property: obfuscateGroupIds
+      (no description available)
+
+    phaseType (Default: CHATUNITEST)
+      User property: phaseType
+      (no description available)
+
+    presencePenalty (Default: 0)
+      User property: presencePenalty
+      (no description available)
+
+    promptPath
+      User property: promptPath
+      (no description available)
+
+    proxy (Default: null:-1)
+      User property: proxy
+      (no description available)
+
+    sampleSize (Default: 10)
+      User property: sampleSize
+      (no description available)
+
+    selectClass
+      Required: true
+      User property: selectClass
+      (no description available)
+
+    sleepTime (Default: 0)
+      User property: sleepTime
+      (no description available)
+
+    smartUnitTest_path
+      User property: smartUnitTest_jar_path
+      (no description available)
+
+    stopWhenSuccess (Default: true)
+      User property: stopWhenSuccess
+      (no description available)
+
+    temperature (Default: 0.5)
+      User property: temperature
+      (no description available)
+
+    testNumber (Default: 5)
+      User property: testNumber
+      (no description available)
+
+    testOutput
+      User property: testOutput
+      (no description available)
+
+    tmpOutput (Default: /tmp/chatunitest-info)
+      User property: tmpOutput
+      (no description available)
+
+    topP (Default: 1)
+      User property: topP
+      (no description available)
+
+    url (Default: https://api.gptsapi.net/v1/chat/completions)
+      User property: url
+      (no description available)
+
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  18.881 s
+[INFO] Finished at: 2026-10-06T13:43:30-04:00
+[INFO] ------------------------------------------------------------------------

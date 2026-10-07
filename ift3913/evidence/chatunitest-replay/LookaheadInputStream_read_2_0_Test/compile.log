@@ -1,0 +1,18 @@
+/private/tmp/ift3913-recovery/LookaheadInputStream_read_2_0_Test/LookaheadInputStream_read_2_0_Test.java:47: error: buffered has private access in LookaheadInputStream
+        assertEquals(3, lookaheadInputStream.buffered);
+                                            ^
+/private/tmp/ift3913-recovery/LookaheadInputStream_read_2_0_Test/LookaheadInputStream_read_2_0_Test.java:49: error: stream has private access in LookaheadInputStream
+        lookaheadInputStream.stream = null;
+                            ^
+/private/tmp/ift3913-recovery/LookaheadInputStream_read_2_0_Test/LookaheadInputStream_read_2_0_Test.java:51: error: buffered has private access in LookaheadInputStream
+        assertEquals(3, lookaheadInputStream.buffered);
+                                            ^
+/private/tmp/ift3913-recovery/LookaheadInputStream_read_2_0_Test/LookaheadInputStream_read_2_0_Test.java:68: error: stream has private access in LookaheadInputStream
+        assertTrue(lookaheadInputStream.stream.isClosed());
+                                       ^
+/private/tmp/ift3913-recovery/LookaheadInputStream_read_2_0_Test/LookaheadInputStream_read_2_0_Test.java:68: error: cannot find symbol
+        assertTrue(lookaheadInputStream.stream.isClosed());
+                                              ^
+  symbol:   method isClosed()
+  location: variable stream of type InputStream
+5 errors

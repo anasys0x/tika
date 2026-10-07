@@ -1,0 +1,11 @@
+{
+  "attempt0": {
+    "testClassName": "LookaheadInputStream_read_3_0_Test",
+    "fullName": "org.apache.tika.io.LookaheadInputStream_read_3_0_Test",
+    "path": "/Users/anasys/Desktop/tika/tika-core/../ift3913/generated/raw/tika-parent/tika-core/org/apache/tika/io/LookaheadInputStream_read_3_0_Test.java",
+    "className": "LookaheadInputStream",
+    "packageName": "org.apache.tika.io",
+    "methodName": "read",
+    "methodSig": "read(byte[], int, int)"
+  }
+}

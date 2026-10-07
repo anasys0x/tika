@@ -1,0 +1,4 @@
+/private/tmp/ift3913-recovery/LookaheadInputStream_mark_7_0_Test/LookaheadInputStream_mark_7_0_Test.java:37: error: mark has private access in LookaheadInputStream
+        assertEquals(2, lookaheadInputStream.mark);
+                                            ^
+1 error

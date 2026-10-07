@@ -1,0 +1,67 @@
+package org.apache.tika.io;
+
+import org.apache.tika.io.LookaheadInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.lang.reflect.Method;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.InputStream;
+
+public class LookaheadInputStream_skip_4_0_Test {
+
+    private LookaheadInputStream lookaheadInputStream;
+
+    private ByteArrayInputStream inputStream;
+
+    @BeforeEach
+    public void setUp() {
+        byte[] data = "Hello, World!".getBytes();
+        inputStream = new ByteArrayInputStream(data);
+        lookaheadInputStream = new LookaheadInputStream(inputStream, 1024);
+    }
+
+    @Test
+    public void testSkip() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        Method skipMethod = LookaheadInputStream.class.getDeclaredMethod("skip", long.class);
+        skipMethod.setAccessible(true);
+        // Test skipping less than available bytes
+        long skipped = (long) skipMethod.invoke(lookaheadInputStream, 5);
+        assertEquals(5, skipped);
+        assertEquals(5, lookaheadInputStream.getPosition());
+        // Test skipping more than available bytes
+        skipped = (long) skipMethod.invoke(lookaheadInputStream, 100);
+        assertEquals(6, skipped);
+        assertEquals(11, lookaheadInputStream.getPosition());
+        // Test skipping when no more bytes are available
+        skipped = (long) skipMethod.invoke(lookaheadInputStream, 100);
+        assertEquals(0, skipped);
+        assertEquals(11, lookaheadInputStream.getPosition());
+    }
+
+    @Test
+    public void testSkipWithIOException() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        Method skipMethod = LookaheadInputStream.class.getDeclaredMethod("skip", long.class);
+        skipMethod.setAccessible(true);
+        // Close the underlying stream to simulate an IOException
+        inputStream.close();
+        assertThrows(IOException.class, () -> {
+            skipMethod.invoke(lookaheadInputStream, 5);
+        });
+    }
+}
+
+--------------------------------------------
+Error in LookaheadInputStream_skip_4_0_Test: line 9 : package org.mockito does not exist
+Error in LookaheadInputStream_skip_4_0_Test: line 12 : package org.mockito.junit.jupiter does not exist
+Error in LookaheadInputStream_skip_4_0_Test: line 29 : cannot find symbol
+  symbol:   class InvocationTargetException
+  location: class org.apache.tika.io.LookaheadInputStream_skip_4_0_Test
+Error in LookaheadInputStream_skip_4_0_Test: line 47 : cannot find symbol
+  symbol:   class InvocationTargetException
+  location: class org.apache.tika.io.LookaheadInputStream_skip_4_0_Test
+Error in LookaheadInputStream_skip_4_0_Test: line 7 : package org.mockito does not exist

@@ -1,0 +1,1254 @@
+{
+  "class": "org.apache.tika.io.LookaheadInputStream",
+  "jdk": "17",
+  "mutators": [
+    "DEFAULTS"
+  ],
+  "phases": {
+    "baseline-java17": {
+      "coverage": {
+        "INSTRUCTION": {
+          "covered": 129,
+          "missed": 35
+        },
+        "BRANCH": {
+          "covered": 14,
+          "missed": 2
+        },
+        "LINE": {
+          "covered": 32,
+          "missed": 8
+        },
+        "COMPLEXITY": {
+          "covered": 15,
+          "missed": 3
+        },
+        "METHOD": {
+          "covered": 8,
+          "missed": 2
+        },
+        "CLASS": {
+          "covered": 1,
+          "missed": 0
+        }
+      },
+      "mutations": {
+        "SURVIVED": 5,
+        "KILLED": 19,
+        "NO_COVERAGE": 9
+      },
+      "totalMutations": 33,
+      "strictScore": 57.58,
+      "tests": {
+        "tests": 749,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 2
+      }
+    },
+    "ai": {
+      "coverage": {
+        "INSTRUCTION": {
+          "covered": 164,
+          "missed": 0
+        },
+        "BRANCH": {
+          "covered": 16,
+          "missed": 0
+        },
+        "LINE": {
+          "covered": 40,
+          "missed": 0
+        },
+        "COMPLEXITY": {
+          "covered": 18,
+          "missed": 0
+        },
+        "METHOD": {
+          "covered": 10,
+          "missed": 0
+        },
+        "CLASS": {
+          "covered": 1,
+          "missed": 0
+        }
+      },
+      "mutations": {
+        "SURVIVED": 5,
+        "KILLED": 28
+      },
+      "totalMutations": 33,
+      "strictScore": 84.85,
+      "tests": {
+        "tests": 763,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 2
+      }
+    },
+    "final": {
+      "coverage": {
+        "INSTRUCTION": {
+          "covered": 164,
+          "missed": 0
+        },
+        "BRANCH": {
+          "covered": 16,
+          "missed": 0
+        },
+        "LINE": {
+          "covered": 40,
+          "missed": 0
+        },
+        "COMPLEXITY": {
+          "covered": 18,
+          "missed": 0
+        },
+        "METHOD": {
+          "covered": 10,
+          "missed": 0
+        },
+        "CLASS": {
+          "covered": 1,
+          "missed": 0
+        }
+      },
+      "mutations": {
+        "KILLED": 33
+      },
+      "totalMutations": 33,
+      "strictScore": 100.0,
+      "tests": {
+        "tests": 767,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 2
+      }
+    }
+  },
+  "mutants": [
+    {
+      "id": 1,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "<init>",
+        "(Ljava/io/InputStream;I)V",
+        [
+          "34"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE"
+      ],
+      "line": 67,
+      "method": "<init>",
+      "signature": "(Ljava/io/InputStream;I)V",
+      "mutator": "RemoveConditionalMutator_EQUAL_ELSE",
+      "description": "removed conditional - replaced equality check with false",
+      "phases": {
+        "baseline-java17": {
+          "status": "SURVIVED",
+          "killingTest": "",
+          "test": ""
+        },
+        "ai": {
+          "status": "SURVIVED",
+          "killingTest": "",
+          "test": ""
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamManualTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamManualTest]/[method:testCloseRestoresNonzeroInitialPosition()]",
+          "test": "LookaheadInputStreamManualTest.testCloseRestoresNonzeroInitialPosition()"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "<init>",
+        "(Ljava/io/InputStream;I)V",
+        [
+          "39"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator"
+      ],
+      "line": 68,
+      "method": "<init>",
+      "signature": "(Ljava/io/InputStream;I)V",
+      "mutator": "VoidMethodCallMutator",
+      "description": "removed call to java/io/InputStream::mark",
+      "phases": {
+        "baseline-java17": {
+          "status": "SURVIVED",
+          "killingTest": "",
+          "test": ""
+        },
+        "ai": {
+          "status": "SURVIVED",
+          "killingTest": "",
+          "test": ""
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamManualTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamManualTest]/[method:testCloseRestoresNonzeroInitialPosition()]",
+          "test": "LookaheadInputStreamManualTest.testCloseRestoresNonzeroInitialPosition()"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "available",
+        "()I",
+        [
+          "7"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.MathMutator"
+      ],
+      "line": 124,
+      "method": "available",
+      "signature": "()I",
+      "mutator": "MathMutator",
+      "description": "Replaced integer subtraction with addition",
+      "phases": {
+        "baseline-java17": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testSkipLookahead()]",
+          "test": "LookaheadInputStreamTest.testSkipLookahead()"
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testSkipLookahead()]",
+          "test": "LookaheadInputStreamTest.testSkipLookahead()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testSkipLookahead()]",
+          "test": "LookaheadInputStreamTest.testSkipLookahead()"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "available",
+        "()I",
+        [
+          "8"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator"
+      ],
+      "line": 124,
+      "method": "available",
+      "signature": "()I",
+      "mutator": "PrimitiveReturnsMutator",
+      "description": "replaced int return with 0 for org/apache/tika/io/LookaheadInputStream::available",
+      "phases": {
+        "baseline-java17": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testSkipLookahead()]",
+          "test": "LookaheadInputStreamTest.testSkipLookahead()"
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testSkipLookahead()]",
+          "test": "LookaheadInputStreamTest.testSkipLookahead()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testSkipLookahead()]",
+          "test": "LookaheadInputStreamTest.testSkipLookahead()"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "close",
+        "()V",
+        [
+          "5"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE"
+      ],
+      "line": 74,
+      "method": "close",
+      "signature": "()V",
+      "mutator": "RemoveConditionalMutator_EQUAL_ELSE",
+      "description": "removed conditional - replaced equality check with false",
+      "phases": {
+        "baseline-java17": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "close",
+        "()V",
+        [
+          "10"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator"
+      ],
+      "line": 75,
+      "method": "close",
+      "signature": "()V",
+      "mutator": "VoidMethodCallMutator",
+      "description": "removed call to java/io/InputStream::reset",
+      "phases": {
+        "baseline-java17": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        }
+      }
+    },
+    {
+      "id": 7,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "fill",
+        "()V",
+        [
+          "11"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator"
+      ],
+      "line": 81,
+      "method": "fill",
+      "signature": "()V",
+      "mutator": "ConditionalsBoundaryMutator",
+      "description": "changed conditional boundary",
+      "phases": {
+        "baseline-java17": {
+          "status": "SURVIVED",
+          "killingTest": "",
+          "test": ""
+        },
+        "ai": {
+          "status": "SURVIVED",
+          "killingTest": "",
+          "test": ""
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamManualTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamManualTest]/[method:testFullWindowDoesNotResetSourceBeforeClose()]",
+          "test": "LookaheadInputStreamManualTest.testFullWindowDoesNotResetSourceBeforeClose()"
+        }
+      }
+    },
+    {
+      "id": 8,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "fill",
+        "()V",
+        [
+          "28"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.MathMutator"
+      ],
+      "line": 82,
+      "method": "fill",
+      "signature": "()V",
+      "mutator": "MathMutator",
+      "description": "Replaced integer subtraction with addition",
+      "phases": {
+        "baseline-java17": {
+          "status": "SURVIVED",
+          "killingTest": "",
+          "test": ""
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStream_read_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStream_read_2_0_Test]/[method:testReadWithSingleByteStream()]",
+          "test": "LookaheadInputStream_read_2_0_Test.testReadWithSingleByteStream()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStream_read_2_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStream_read_2_0_Test]/[method:testReadWithSingleByteStream()]",
+          "test": "LookaheadInputStream_read_2_0_Test.testReadWithSingleByteStream()"
+        }
+      }
+    },
+    {
+      "id": 9,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "fill",
+        "()V",
+        [
+          "42"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.MathMutator"
+      ],
+      "line": 84,
+      "method": "fill",
+      "signature": "()V",
+      "mutator": "MathMutator",
+      "description": "Replaced integer addition with subtraction",
+      "phases": {
+        "baseline-java17": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        }
+      }
+    },
+    {
+      "id": 10,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "fill",
+        "()V",
+        [
+          "5"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE"
+      ],
+      "line": 81,
+      "method": "fill",
+      "signature": "()V",
+      "mutator": "RemoveConditionalMutator_EQUAL_ELSE",
+      "description": "removed conditional - replaced equality check with false",
+      "phases": {
+        "baseline-java17": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        }
+      }
+    },
+    {
+      "id": 11,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "fill",
+        "()V",
+        [
+          "14"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE"
+      ],
+      "line": 81,
+      "method": "fill",
+      "signature": "()V",
+      "mutator": "RemoveConditionalMutator_EQUAL_ELSE",
+      "description": "removed conditional - replaced equality check with false",
+      "phases": {
+        "baseline-java17": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        }
+      }
+    },
+    {
+      "id": 12,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "fill",
+        "()V",
+        [
+          "35"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE"
+      ],
+      "line": 83,
+      "method": "fill",
+      "signature": "()V",
+      "mutator": "RemoveConditionalMutator_EQUAL_ELSE",
+      "description": "removed conditional - replaced equality check with false",
+      "phases": {
+        "baseline-java17": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        }
+      }
+    },
+    {
+      "id": 13,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "fill",
+        "()V",
+        [
+          "11"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_ELSE"
+      ],
+      "line": 81,
+      "method": "fill",
+      "signature": "()V",
+      "mutator": "RemoveConditionalMutator_ORDER_ELSE",
+      "description": "removed conditional - replaced comparison check with false",
+      "phases": {
+        "baseline-java17": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        }
+      }
+    },
+    {
+      "id": 14,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "fill",
+        "()V",
+        [
+          "49"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator"
+      ],
+      "line": 86,
+      "method": "fill",
+      "signature": "()V",
+      "mutator": "VoidMethodCallMutator",
+      "description": "removed call to org/apache/tika/io/LookaheadInputStream::close",
+      "phases": {
+        "baseline-java17": {
+          "status": "SURVIVED",
+          "killingTest": "",
+          "test": ""
+        },
+        "ai": {
+          "status": "SURVIVED",
+          "killingTest": "",
+          "test": ""
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamManualTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamManualTest]/[method:testSourceEndRestoresUnderlyingPositionAutomatically()]",
+          "test": "LookaheadInputStreamManualTest.testSourceEndRestoresUnderlyingPositionAutomatically()"
+        }
+      }
+    },
+    {
+      "id": 15,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "markSupported",
+        "()Z",
+        [
+          "4"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator"
+      ],
+      "line": 129,
+      "method": "markSupported",
+      "signature": "()Z",
+      "mutator": "BooleanFalseReturnValsMutator",
+      "description": "replaced boolean return with false for org/apache/tika/io/LookaheadInputStream::markSupported",
+      "phases": {
+        "baseline-java17": {
+          "status": "NO_COVERAGE",
+          "killingTest": "",
+          "test": ""
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStream_markSupported_6_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStream_markSupported_6_0_Test]/[method:testMarkSupported()]",
+          "test": "LookaheadInputStream_markSupported_6_0_Test.testMarkSupported()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStream_markSupported_6_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStream_markSupported_6_0_Test]/[method:testMarkSupported()]",
+          "test": "LookaheadInputStream_markSupported_6_0_Test.testMarkSupported()"
+        }
+      }
+    },
+    {
+      "id": 16,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "read",
+        "()I",
+        [
+          "11"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator"
+      ],
+      "line": 94,
+      "method": "read",
+      "signature": "()I",
+      "mutator": "ConditionalsBoundaryMutator",
+      "description": "changed conditional boundary",
+      "phases": {
+        "baseline-java17": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testZeroLookahead()]",
+          "test": "LookaheadInputStreamTest.testZeroLookahead()"
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testZeroLookahead()]",
+          "test": "LookaheadInputStreamTest.testZeroLookahead()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testZeroLookahead()]",
+          "test": "LookaheadInputStreamTest.testZeroLookahead()"
+        }
+      }
+    },
+    {
+      "id": 17,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "read",
+        "()I",
+        [
+          "22"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.MathMutator"
+      ],
+      "line": 95,
+      "method": "read",
+      "signature": "()I",
+      "mutator": "MathMutator",
+      "description": "Replaced integer addition with subtraction",
+      "phases": {
+        "baseline-java17": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        }
+      }
+    },
+    {
+      "id": 18,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "read",
+        "()I",
+        [
+          "25"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.MathMutator"
+      ],
+      "line": 95,
+      "method": "read",
+      "signature": "()I",
+      "mutator": "MathMutator",
+      "description": "Replaced bitwise AND with OR",
+      "phases": {
+        "baseline-java17": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        }
+      }
+    },
+    {
+      "id": 19,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "read",
+        "()I",
+        [
+          "11"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_ELSE"
+      ],
+      "line": 94,
+      "method": "read",
+      "signature": "()I",
+      "mutator": "RemoveConditionalMutator_ORDER_ELSE",
+      "description": "removed conditional - replaced comparison check with false",
+      "phases": {
+        "baseline-java17": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        }
+      }
+    },
+    {
+      "id": 20,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "read",
+        "()I",
+        [
+          "4"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator"
+      ],
+      "line": 93,
+      "method": "read",
+      "signature": "()I",
+      "mutator": "VoidMethodCallMutator",
+      "description": "removed call to org/apache/tika/io/LookaheadInputStream::fill",
+      "phases": {
+        "baseline-java17": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        }
+      }
+    },
+    {
+      "id": 21,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "read",
+        "()I",
+        [
+          "26"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator"
+      ],
+      "line": 95,
+      "method": "read",
+      "signature": "()I",
+      "mutator": "PrimitiveReturnsMutator",
+      "description": "replaced int return with 0 for org/apache/tika/io/LookaheadInputStream::read",
+      "phases": {
+        "baseline-java17": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testMarkLookahead()]",
+          "test": "LookaheadInputStreamTest.testMarkLookahead()"
+        }
+      }
+    },
+    {
+      "id": 22,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "read",
+        "()I",
+        [
+          "31"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator"
+      ],
+      "line": 97,
+      "method": "read",
+      "signature": "()I",
+      "mutator": "PrimitiveReturnsMutator",
+      "description": "replaced int return with 0 for org/apache/tika/io/LookaheadInputStream::read",
+      "phases": {
+        "baseline-java17": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testZeroLookahead()]",
+          "test": "LookaheadInputStreamTest.testZeroLookahead()"
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testZeroLookahead()]",
+          "test": "LookaheadInputStreamTest.testZeroLookahead()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testZeroLookahead()]",
+          "test": "LookaheadInputStreamTest.testZeroLookahead()"
+        }
+      }
+    },
+    {
+      "id": 23,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "read",
+        "([BII)I",
+        [
+          "11"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator"
+      ],
+      "line": 104,
+      "method": "read",
+      "signature": "([BII)I",
+      "mutator": "ConditionalsBoundaryMutator",
+      "description": "changed conditional boundary",
+      "phases": {
+        "baseline-java17": {
+          "status": "NO_COVERAGE",
+          "killingTest": "",
+          "test": ""
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStream_read_3_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStream_read_3_0_Test]/[method:testReadWithBufferFull()]",
+          "test": "LookaheadInputStream_read_3_0_Test.testReadWithBufferFull()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStream_read_3_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStream_read_3_0_Test]/[method:testReadWithBufferFull()]",
+          "test": "LookaheadInputStream_read_3_0_Test.testReadWithBufferFull()"
+        }
+      }
+    },
+    {
+      "id": 24,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "read",
+        "([BII)I",
+        [
+          "19"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.MathMutator"
+      ],
+      "line": 105,
+      "method": "read",
+      "signature": "([BII)I",
+      "mutator": "MathMutator",
+      "description": "Replaced integer subtraction with addition",
+      "phases": {
+        "baseline-java17": {
+          "status": "NO_COVERAGE",
+          "killingTest": "",
+          "test": ""
+        },
+        "ai": {
+          "status": "SURVIVED",
+          "killingTest": "",
+          "test": ""
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamManualTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamManualTest]/[method:testBulkReadClampsToRemainingWindowAfterSingleByteRead()]",
+          "test": "LookaheadInputStreamManualTest.testBulkReadClampsToRemainingWindowAfterSingleByteRead()"
+        }
+      }
+    },
+    {
+      "id": 25,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "read",
+        "([BII)I",
+        [
+          "38"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.MathMutator"
+      ],
+      "line": 107,
+      "method": "read",
+      "signature": "([BII)I",
+      "mutator": "MathMutator",
+      "description": "Replaced integer addition with subtraction",
+      "phases": {
+        "baseline-java17": {
+          "status": "NO_COVERAGE",
+          "killingTest": "",
+          "test": ""
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStream_read_3_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStream_read_3_0_Test]/[method:testReadWithBufferFull()]",
+          "test": "LookaheadInputStream_read_3_0_Test.testReadWithBufferFull()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStream_read_3_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStream_read_3_0_Test]/[method:testReadWithBufferFull()]",
+          "test": "LookaheadInputStream_read_3_0_Test.testReadWithBufferFull()"
+        }
+      }
+    },
+    {
+      "id": 26,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "read",
+        "([BII)I",
+        [
+          "11"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_ELSE"
+      ],
+      "line": 104,
+      "method": "read",
+      "signature": "([BII)I",
+      "mutator": "RemoveConditionalMutator_ORDER_ELSE",
+      "description": "removed conditional - replaced comparison check with false",
+      "phases": {
+        "baseline-java17": {
+          "status": "NO_COVERAGE",
+          "killingTest": "",
+          "test": ""
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStream_read_3_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStream_read_3_0_Test]/[method:testReadWithBufferFull()]",
+          "test": "LookaheadInputStream_read_3_0_Test.testReadWithBufferFull()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStream_read_3_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStream_read_3_0_Test]/[method:testReadWithBufferFull()]",
+          "test": "LookaheadInputStream_read_3_0_Test.testReadWithBufferFull()"
+        }
+      }
+    },
+    {
+      "id": 27,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "read",
+        "([BII)I",
+        [
+          "4"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator"
+      ],
+      "line": 103,
+      "method": "read",
+      "signature": "([BII)I",
+      "mutator": "VoidMethodCallMutator",
+      "description": "removed call to org/apache/tika/io/LookaheadInputStream::fill",
+      "phases": {
+        "baseline-java17": {
+          "status": "NO_COVERAGE",
+          "killingTest": "",
+          "test": ""
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStream_read_3_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStream_read_3_0_Test]/[method:testReadWithBufferFull()]",
+          "test": "LookaheadInputStream_read_3_0_Test.testReadWithBufferFull()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStream_read_3_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStream_read_3_0_Test]/[method:testReadWithBufferFull()]",
+          "test": "LookaheadInputStream_read_3_0_Test.testReadWithBufferFull()"
+        }
+      }
+    },
+    {
+      "id": 28,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "read",
+        "([BII)I",
+        [
+          "31"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator"
+      ],
+      "line": 106,
+      "method": "read",
+      "signature": "([BII)I",
+      "mutator": "VoidMethodCallMutator",
+      "description": "removed call to java/lang/System::arraycopy",
+      "phases": {
+        "baseline-java17": {
+          "status": "NO_COVERAGE",
+          "killingTest": "",
+          "test": ""
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStream_read_3_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStream_read_3_0_Test]/[method:testReadWithBufferFull()]",
+          "test": "LookaheadInputStream_read_3_0_Test.testReadWithBufferFull()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStream_read_3_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStream_read_3_0_Test]/[method:testReadWithBufferFull()]",
+          "test": "LookaheadInputStream_read_3_0_Test.testReadWithBufferFull()"
+        }
+      }
+    },
+    {
+      "id": 29,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "read",
+        "([BII)I",
+        [
+          "43"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator"
+      ],
+      "line": 108,
+      "method": "read",
+      "signature": "([BII)I",
+      "mutator": "PrimitiveReturnsMutator",
+      "description": "replaced int return with 0 for org/apache/tika/io/LookaheadInputStream::read",
+      "phases": {
+        "baseline-java17": {
+          "status": "NO_COVERAGE",
+          "killingTest": "",
+          "test": ""
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStream_read_3_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStream_read_3_0_Test]/[method:testReadWithBufferFull()]",
+          "test": "LookaheadInputStream_read_3_0_Test.testReadWithBufferFull()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStream_read_3_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStream_read_3_0_Test]/[method:testReadWithBufferFull()]",
+          "test": "LookaheadInputStream_read_3_0_Test.testReadWithBufferFull()"
+        }
+      }
+    },
+    {
+      "id": 30,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "read",
+        "([BII)I",
+        [
+          "48"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator"
+      ],
+      "line": 110,
+      "method": "read",
+      "signature": "([BII)I",
+      "mutator": "PrimitiveReturnsMutator",
+      "description": "replaced int return with 0 for org/apache/tika/io/LookaheadInputStream::read",
+      "phases": {
+        "baseline-java17": {
+          "status": "NO_COVERAGE",
+          "killingTest": "",
+          "test": ""
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStream_read_3_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStream_read_3_0_Test]/[method:testReadWithBufferFull()]",
+          "test": "LookaheadInputStream_read_3_0_Test.testReadWithBufferFull()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStream_read_3_0_Test.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStream_read_3_0_Test]/[method:testReadWithBufferFull()]",
+          "test": "LookaheadInputStream_read_3_0_Test.testReadWithBufferFull()"
+        }
+      }
+    },
+    {
+      "id": 31,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "skip",
+        "(J)J",
+        [
+          "20"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.MathMutator"
+      ],
+      "line": 118,
+      "method": "skip",
+      "signature": "(J)J",
+      "mutator": "MathMutator",
+      "description": "Replaced long addition with subtraction",
+      "phases": {
+        "baseline-java17": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testSkipLookahead()]",
+          "test": "LookaheadInputStreamTest.testSkipLookahead()"
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testSkipLookahead()]",
+          "test": "LookaheadInputStreamTest.testSkipLookahead()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testSkipLookahead()]",
+          "test": "LookaheadInputStreamTest.testSkipLookahead()"
+        }
+      }
+    },
+    {
+      "id": 32,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "skip",
+        "(J)J",
+        [
+          "4"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator"
+      ],
+      "line": 116,
+      "method": "skip",
+      "signature": "(J)J",
+      "mutator": "VoidMethodCallMutator",
+      "description": "removed call to org/apache/tika/io/LookaheadInputStream::fill",
+      "phases": {
+        "baseline-java17": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testSkipLookahead()]",
+          "test": "LookaheadInputStreamTest.testSkipLookahead()"
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testSkipLookahead()]",
+          "test": "LookaheadInputStreamTest.testSkipLookahead()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testSkipLookahead()]",
+          "test": "LookaheadInputStreamTest.testSkipLookahead()"
+        }
+      }
+    },
+    {
+      "id": 33,
+      "key": [
+        "org.apache.tika.io.LookaheadInputStream",
+        "skip",
+        "(J)J",
+        [
+          "26"
+        ],
+        "org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator"
+      ],
+      "line": 119,
+      "method": "skip",
+      "signature": "(J)J",
+      "mutator": "PrimitiveReturnsMutator",
+      "description": "replaced long return with 0 for org/apache/tika/io/LookaheadInputStream::skip",
+      "phases": {
+        "baseline-java17": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testSkipLookahead()]",
+          "test": "LookaheadInputStreamTest.testSkipLookahead()"
+        },
+        "ai": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testSkipLookahead()]",
+          "test": "LookaheadInputStreamTest.testSkipLookahead()"
+        },
+        "final": {
+          "status": "KILLED",
+          "killingTest": "org.apache.tika.io.LookaheadInputStreamTest.[engine:junit-jupiter]/[class:org.apache.tika.io.LookaheadInputStreamTest]/[method:testSkipLookahead()]",
+          "test": "LookaheadInputStreamTest.testSkipLookahead()"
+        }
+      }
+    }
+  ],
+  "productionSha256": "98f07ececbd2ad17b5b05a89f94e8d36320eaeb82eaa19b47c0dcb27ec54dc98"
+}
