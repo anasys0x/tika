@@ -40,6 +40,58 @@ On a fait ces mesures sous Windows 11 avec Java 23.0.1, sans aucun échec ni err
 
 En résumé, les tests générés par l’IA n’ont tué aucun nouveau mutant sur les 25. Ce sont nos tests manuels qui ont fait passer le score de 60 % à 96 %. Le seul mutant encore vivant, C5, est équivalent (section 8.7), donc on ne peut pas faire mieux que 96 % sur cette classe avec les mutateurs `DEFAULTS`.
 
+On a relancé les trois phases avec Java 17 pour prendre les captures ci-dessous, avec les tests des deux classes activés ensemble. On retrouve les mêmes scores de mutation que dans les tableaux. La colonne « Cov. » de JaCoCo mesure les instructions ; les colonnes « Lines » donnent les lignes. La couverture calculée par PIT peut différer de celle de JaCoCo.
+
+<details>
+<summary>Captures JaCoCo et PIT — LookaheadInputStream</summary>
+
+JaCoCo — tests originaux : 32/40 lignes couvertes.
+
+![JaCoCo LookaheadInputStream — tests originaux](images/tache2/lookahead-jacoco-avant.png)
+
+JaCoCo — tests originaux + IA corrigés + manuels : 40/40 lignes couvertes.
+
+![JaCoCo LookaheadInputStream — tests originaux + IA corrigés + manuels](images/tache2/lookahead-jacoco-final.png)
+
+PIT — tests originaux : 19/33 mutants tués.
+
+![PIT LookaheadInputStream — tests originaux](images/tache2/lookahead-pit-avant.png)
+
+PIT — tests originaux + IA corrigés : 28/33 mutants tués.
+
+![PIT LookaheadInputStream — tests originaux + IA corrigés](images/tache2/lookahead-pit-ia.png)
+
+PIT — tests originaux + IA corrigés + manuels : 33/33 mutants tués.
+
+![PIT LookaheadInputStream — tests originaux + IA corrigés + manuels](images/tache2/lookahead-pit-final.png)
+
+</details>
+
+<details>
+<summary>Captures JaCoCo et PIT — CharsetUtils</summary>
+
+JaCoCo — tests originaux : 62/81 lignes couvertes.
+
+![JaCoCo CharsetUtils — tests originaux](images/tache2/charset-jacoco-avant.png)
+
+JaCoCo — tests originaux + IA corrigés + manuels : 68/81 lignes couvertes.
+
+![JaCoCo CharsetUtils — tests originaux + IA corrigés + manuels](images/tache2/charset-jacoco-final.png)
+
+PIT — tests originaux : 15/25 mutants tués.
+
+![PIT CharsetUtils — tests originaux](images/tache2/charset-pit-avant.png)
+
+PIT — tests originaux + IA corrigés : 15/25 mutants tués.
+
+![PIT CharsetUtils — tests originaux + IA corrigés](images/tache2/charset-pit-ia.png)
+
+PIT — tests originaux + IA corrigés + manuels : 24/25 mutants tués.
+
+![PIT CharsetUtils — tests originaux + IA corrigés + manuels](images/tache2/charset-pit-final.png)
+
+</details>
+
 ## 2. Choix de la classe
 
 Pour la première classe, on a retenu [org.apache.tika.io.LookaheadInputStream](tika-core/src/main/java/org/apache/tika/io/LookaheadInputStream.java), dans le module autorisé `tika-core`. Une classe suffit pour respecter les consignes, mais on en a traité une seconde, `CharsetUtils`, en section 8.
