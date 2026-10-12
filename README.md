@@ -42,8 +42,7 @@ En résumé, les tests générés par l’IA n’ont tué aucun nouveau mutant s
 
 On a relancé les trois phases avec Java 17 pour prendre les captures ci-dessous, avec les tests des deux classes activés ensemble. On retrouve les mêmes scores de mutation que dans les tableaux. La colonne « Cov. » de JaCoCo mesure les instructions ; les colonnes « Lines » donnent les lignes. La couverture calculée par PIT peut différer de celle de JaCoCo.
 
-<details>
-<summary>Captures JaCoCo et PIT — LookaheadInputStream</summary>
+### Captures JaCoCo et PIT — LookaheadInputStream
 
 JaCoCo — tests originaux : 32/40 lignes couvertes.
 
@@ -65,10 +64,8 @@ PIT — tests originaux + IA corrigés + manuels : 33/33 mutants tués.
 
 ![PIT LookaheadInputStream — tests originaux + IA corrigés + manuels](images/tache2/lookahead-pit-final.png)
 
-</details>
 
-<details>
-<summary>Captures JaCoCo et PIT — CharsetUtils</summary>
+### Captures JaCoCo et PIT — CharsetUtils
 
 JaCoCo — tests originaux : 62/81 lignes couvertes.
 
@@ -90,7 +87,6 @@ PIT — tests originaux + IA corrigés + manuels : 24/25 mutants tués.
 
 ![PIT CharsetUtils — tests originaux + IA corrigés + manuels](images/tache2/charset-pit-final.png)
 
-</details>
 
 ## 2. Choix de la classe
 
