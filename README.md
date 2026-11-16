@@ -1,3 +1,32 @@
+# IFT3913 — Tâche 3 : contrôle Semgrep et validation de la CI
+
+| Nom complet | Identifiant GitHub |
+|---|---|
+| Anas Mrani Alaoui | Anasys0x |
+| Aymane Rachidi | Aymtrack |
+
+## 1. Empêcher un nouveau signalement de passer dans le build
+
+Le [workflow de la tâche 3](.github/workflows/ift3913-tache3.yml) reprend les tests Maven de la tâche 2. Le job Maven déclare `needs: semgrep` : une analyse réussie l’autorise à démarrer, tandis qu’un nouveau signalement ou une erreur d’analyse bloque le build. La branche `tache2` conserve son propre workflow.
+
+Le [script de contrôle](.github/scripts/ift3913-semgrep.sh) utilise la révision précédente de `tache3` lors d’un push. Pour le premier push, GitHub envoie un SHA nul et le script choisit l’ancêtre commun avec `origin/tache2`. Pour une PR vers `tache2` ou `tache3`, le workflow analyse le résultat de la fusion préparée par GitHub, par rapport au commit de la branche cible. Le checkout doit inclure tout l’historique pour que ces révisions restent accessibles.
+
+Semgrep Community Edition analyse Java avec `p/java`. `--baseline-commit` écarte les signalements présents dans la révision de référence. `--error` renvoie le statut `1` quand il reste un signalement et `--strict` remonte les erreurs d’analyse. L’étape transmet ce statut à GitHub Actions et le rapport JSON, s’il a pu être écrit, reste disponible dans l’artefact `semgrep-diff`. Le moteur est fixé à 1.144.0. La validation de la configuration du registre a chargé 60 règles Java sans erreur. Le jeu `p/java` est fourni par le registre et peut évoluer ; il faut utiliser la même version du jeu de règles pour comparer deux analyses complètes.
+
+## 2. Validation et comparaison des rapports Semgrep
+
+Le script de contrôle a été testé avec Semgrep 1.144.0 dans un dépôt Git temporaire. Un premier commit de test a déplacé un marqueur déjà présent sans en ajouter : le contrôle a renvoyé `0`. Un second a ajouté sept marqueurs textuels inertes : les rapports complets sont passés de 1 à 8 signalements et le rapport différentiel a retenu les 7 ajouts, avec le statut `1`. Le cas du premier push, où GitHub fournit un SHA nul, a produit le même résultat. Cette expérience valide le filtrage et le blocage ; elle n’introduit aucune vulnérabilité dans Tika.
+
+Les scans complets du vrai code Java de Tika, avant et après la modification du workflow, ont analysé les mêmes 1 478 fichiers avec un seul instantané de `p/java`. Ils ont trouvé les mêmes 11 signalements et le même avertissement de syntaxe préexistant. Le scan différentiel local du premier push a renvoyé `0` : aucun fichier Java n’avait changé. Les rapports de validation locale sont conservés à part. Sur GitHub Actions, le rapport du contrôle sur Tika sera disponible dans l’artefact `semgrep-diff`. L’exécution hébergée reste à vérifier après le push.
+
+## 3. Rickroll dans le CI de Tika
+
+Le [cas d’étude de la tâche](https://github.com/umontreal-diro/IFT3913/blob/2026/README.md#cas-d%C3%A9tude) est Tika. Après un échec de Maven, le workflow inspecte les rapports JUnit de Surefire et de Failsafe. Si un rapport contient un cas de test en échec ou en erreur, il appelle l’[action composite réutilisable](.github/actions/ift3913-rickroll/action.yml) qui affiche le lien du rickroll dans le résumé GitHub Actions. Le statut d’échec Maven est conservé.
+
+La validation locale a couvert l’absence de rapport, un rapport de tests réussis ou ignorés, un échec d’assertion Surefire et une erreur de test Failsafe. Elle a aussi vérifié le contenu produit dans le résumé. L’exécution hébergée reste à vérifier après publication.
+
+---
+
 # IFT3913 — Tâche 2 : tests de LookaheadInputStream et CharsetUtils dans Apache Tika
 
 | Nom complet | Identifiant GitHub |
@@ -466,7 +495,7 @@ Les rapports PIT se trouvent dans `tika-core/target/pit-reports/charset-*/index.
 
 ## 10. GitHub Actions et remise
 
-Le [workflow dédié](.github/workflows/ift3913-tache2.yml) utilise Temurin Java 17 et lance directement `mvn -B -ntp -pl tika-core -am clean verify -Pci,ift3913-ai,ift3913-manual`. Il exécute donc les tests IA et les tests supplémentaires en même temps que les tests originaux. Ollama n’est pas nécessaire en CI, puisque les tests générés sont déjà dans le dépôt.
+Le [workflow dédié](https://github.com/anasys0x/tika/blob/tache2/.github/workflows/ift3913-tache2.yml) utilise Temurin Java 17 et lance directement `mvn -B -ntp -pl tika-core -am clean verify -Pci,ift3913-ai,ift3913-manual`. Il exécute donc les tests IA et les tests supplémentaires en même temps que les tests originaux. Ollama n’est pas nécessaire en CI, puisque les tests générés sont déjà dans le dépôt.
 
 Pour LookaheadInputStream, après le retrait des fichiers auxiliaires, le [workflow simplifié a réussi le 7 octobre 2026](https://github.com/anasys0x/tika/actions/runs/37669952167), au commit `8aefb69dbbb5360205305fe8eb80d39a2306b14f` : 767 tests core, aucun échec, aucune erreur et 2 ignorés, et les 18 nouveaux tests passent. Les résultats des trois phases de la section 1 avaient aussi été confirmés par le [premier run GitHub Actions](https://github.com/anasys0x/tika/actions/runs/37666427788), au commit `a8ebf0c355ef2340b3311b6f2ef41bd03ea033d5`. La mise à jour de ce lien dans le README ne modifie pas les sources validées.
 

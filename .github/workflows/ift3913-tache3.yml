@@ -1,0 +1,74 @@
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: IFT3913 - Tache 3
+
+on:
+  push:
+    branches: [tache3]
+  pull_request:
+    branches: [tache2, tache3]
+
+permissions:
+  contents: read
+
+jobs:
+  semgrep:
+    name: Semgrep - nouveaux signalements Java
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - name: Install Semgrep
+        run: python -m pip install semgrep==1.144.0 pydantic==2.11.10
+      - name: Scan changes against the Git baseline
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: bash .github/scripts/ift3913-semgrep.sh
+      - name: Upload Semgrep report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: semgrep-diff
+          path: ${{ runner.temp }}/semgrep-diff.json
+          if-no-files-found: ignore
+
+  tests:
+    needs: semgrep
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - name: Execute original, AI and additional tests
+        id: maven
+        run: mvn -B -ntp -pl tika-core -am clean verify -Pci,ift3913-ai,ift3913-manual
+      - name: Check for a failed Tika test
+        id: junit
+        if: ${{ failure() && steps.maven.outcome == 'failure' }}
+        run: python3 .github/scripts/ift3913-check-junit.py
+      - name: Rickroll on Tika test failure
+        if: ${{ failure() && steps.junit.outputs.failed == 'true' }}
+        uses: ./.github/actions/ift3913-rickroll
