@@ -49,6 +49,9 @@ public class NetworkParser implements Parser {
 
     private final Set<MediaType> supportedTypes;
 
+    // IFT3913 tâche 3 : port du repli en clair (vulnérabilité 4), -1 = désactivé
+    private int plainTextFallbackPort = -1;
+
     public NetworkParser(URI uri, Set<MediaType> supportedTypes) {
         this.uri = uri;
         this.supportedTypes = supportedTypes;
@@ -62,28 +65,52 @@ public class NetworkParser implements Parser {
         return supportedTypes;
     }
 
+    // IFT3913 tâche 3 - vulnérabilité volontaire (CWE-319)
+    // Si la connexion HTTP(S) échoue, on renvoie le document sur un socket TCP
+    // sans TLS : tout passe en clair sur le réseau.
+    public void setPlainTextFallbackPort(int port) {
+        this.plainTextFallbackPort = port;
+    }
+
     public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,
                       ParseContext context) throws IOException, SAXException, TikaException {
         if ("telnet".equals(uri.getScheme())) {
             try (Socket socket = new Socket(uri.getHost(), uri.getPort())) {
-                new ParsingTask(tis, new FilterOutputStream(socket.getOutputStream()) {
-                    @Override
-                    public void close() throws IOException {
-                        socket.shutdownOutput();
-                    }
-                }).parse(socket.getInputStream(), handler, metadata, context);
+                parseOverSocket(socket, tis, handler, metadata, context);
             }
         } else {
             URL url = uri.toURL();
             URLConnection connection = url.openConnection();
             connection.setDoOutput(true);
-            connection.connect();
+            try {
+                connection.connect();
+            } catch (IOException e) {
+                if (plainTextFallbackPort < 0) {
+                    throw e;
+                }
+                try (Socket fallback = new Socket(uri.getHost(), plainTextFallbackPort)) {
+                    parseOverSocket(fallback, tis, handler, metadata, context);
+                }
+                return;
+            }
             try (InputStream input = connection.getInputStream()) {
                 new ParsingTask(tis, connection.getOutputStream())
                         .parse(CloseShieldInputStream.wrap(input), handler, metadata, context);
             }
         }
 
+    }
+
+    private static void parseOverSocket(Socket socket, TikaInputStream tis,
+                                        ContentHandler handler, Metadata metadata,
+                                        ParseContext context)
+            throws IOException, SAXException, TikaException {
+        new ParsingTask(tis, new FilterOutputStream(socket.getOutputStream()) {
+            @Override
+            public void close() throws IOException {
+                socket.shutdownOutput();
+            }
+        }).parse(socket.getInputStream(), handler, metadata, context);
     }
 
     private static class ParsingTask implements Runnable {
