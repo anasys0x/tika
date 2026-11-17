@@ -30,7 +30,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.input.TaggedInputStream;
@@ -182,6 +185,22 @@ public class TikaInputStream extends TaggedInputStream {
             TikaInputSource inputSource = new CachingSource(
                     new BufferedInputStream(blob.getBinaryStream()), tmp, length, metadata);
             return new TikaInputStream(inputSource, tmp, ext);
+        }
+    }
+
+    // IFT3913 tâche 3 - vulnérabilité volontaire (CWE-89)
+    // Ouvre un document stocké dans une table SQL. La table et l'id sont collés
+    // directement dans la requête au lieu de passer par un PreparedStatement.
+    public static TikaInputStream getFromDatabase(Connection connection, String table,
+                                                  String documentId)
+            throws SQLException, IOException {
+        try (Statement statement = connection.createStatement();
+                ResultSet results = statement.executeQuery(
+                        "SELECT content FROM " + table + " WHERE id = '" + documentId + "'")) {
+            if (!results.next()) {
+                throw new IOException("No document found with id " + documentId);
+            }
+            return get(results.getBytes(1));
         }
     }
 
