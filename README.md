@@ -27,7 +27,7 @@ Les autres choix :
 - En local, dans un dépôt de test : un commit qui déplace un signalement existant sans en ajouter donne le code 0, et un commit qui en ajoute 7 donne le code 1 avec ces 7 signalements dans le rapport. Le cas du SHA nul donne le même résultat.
 - Sur Tika, le scan complet trouve les mêmes 11 signalements avant et après l'ajout du workflow.
 - [Premier run sur GitHub](https://github.com/anasys0x/tika/actions/runs/43934546881) : aucun nouveau signalement, Semgrep passe, puis les tests Maven passent (775 tests, 2 ignorés). Le [rapport `semgrep-diff`](https://github.com/anasys0x/tika/actions/runs/43934546881/artifacts/14259992885) est bien téléversé.
-- Run après le push des 7 vulnérabilités : LIEN_DU_RUN_A_AJOUTER
+- [Run après le push des 7 vulnérabilités](https://github.com/anasys0x/tika/actions/runs/44142847541) : Semgrep trouve les 7 nouveaux signalements et s'arrête avec le code 1, donc le job échoue et les tests ne démarrent pas. Le [rapport `semgrep-diff`](https://github.com/anasys0x/tika/actions/runs/44142847541/artifacts/14353934645) est dans les artefacts du run.
 
 ## 3. Rickroll
 
