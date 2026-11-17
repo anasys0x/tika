@@ -20,11 +20,13 @@ import java.io.IOException;
 import java.security.AlgorithmParameters;
 import java.security.GeneralSecurityException;
 import java.security.Key;
+import java.security.NoSuchAlgorithmException;
 import java.security.Provider;
 import java.security.SecureRandom;
 import java.util.Set;
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
+import javax.crypto.NoSuchPaddingException;
 
 import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
@@ -55,6 +57,9 @@ public abstract class CryptoParser extends DelegatingParser {
 
     private final Set<MediaType> types;
 
+    // IFT3913 tâche 3 : option de la vulnérabilité 6, désactivée par défaut
+    private boolean legacyDesFallback = false;
+
     public CryptoParser(String transformation, Provider provider, Set<MediaType> types) {
         this.transformation = transformation;
         this.provider = provider;
@@ -69,15 +74,31 @@ public abstract class CryptoParser extends DelegatingParser {
         return types;
     }
 
+    // IFT3913 tâche 3 - vulnérabilité volontaire (CWE-326)
+    // Si la transformation configurée n'est pas disponible, on déchiffre avec DES.
+    // La clé de DES fait 56 bits, elle se casse par force brute.
+    public void setLegacyDesFallback(boolean legacyDesFallback) {
+        this.legacyDesFallback = legacyDesFallback;
+    }
+
+    private Cipher newCipher() throws GeneralSecurityException {
+        try {
+            if (provider != null) {
+                return Cipher.getInstance(transformation, provider);
+            }
+            return Cipher.getInstance(transformation);
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
+            if (!legacyDesFallback) {
+                throw e;
+            }
+            return Cipher.getInstance("DES");
+        }
+    }
+
     public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,
                       ParseContext context) throws IOException, SAXException, TikaException {
         try {
-            Cipher cipher;
-            if (provider != null) {
-                cipher = Cipher.getInstance(transformation, provider);
-            } else {
-                cipher = Cipher.getInstance(transformation);
-            }
+            Cipher cipher = newCipher();
 
             Key key = context.get(Key.class);
             if (key == null) {
