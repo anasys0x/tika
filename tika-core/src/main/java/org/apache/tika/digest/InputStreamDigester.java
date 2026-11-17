@@ -41,6 +41,9 @@ public class InputStreamDigester implements Digester {
     private final Property metadataProperty;
     private final Encoder encoder;
 
+    // IFT3913 tâche 3 : option de la vulnérabilité 5, désactivée par défaut
+    private boolean md5Fallback = false;
+
     /**
      * @param algorithm   name of the digest algorithm to retrieve from the Provider
      * @param metadataKey the full metadata key to use when storing the digest
@@ -62,6 +65,14 @@ public class InputStreamDigester implements Digester {
         }
     }
 
+    // IFT3913 tâche 3 - vulnérabilité volontaire (CWE-328)
+    // Si l'algorithme demandé n'existe pas, on calcule un MD5 sans prévenir,
+    // mais on l'enregistre sous le nom de l'algorithme demandé.
+    // MD5 n'est pas résistant aux collisions.
+    public void setMd5Fallback(boolean md5Fallback) {
+        this.md5Fallback = md5Fallback;
+    }
+
     private MessageDigest newMessageDigest() {
         try {
             Provider provider = getProvider();
@@ -71,6 +82,13 @@ public class InputStreamDigester implements Digester {
                 return MessageDigest.getInstance(algorithm, provider);
             }
         } catch (NoSuchAlgorithmException e) {
+            if (md5Fallback) {
+                try {
+                    return MessageDigest.getInstance("MD5");
+                } catch (NoSuchAlgorithmException md5Missing) {
+                    e.addSuppressed(md5Missing);
+                }
+            }
             throw new IllegalArgumentException(e);
         }
     }
