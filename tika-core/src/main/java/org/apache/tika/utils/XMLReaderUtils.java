@@ -271,6 +271,17 @@ public class XMLReaderUtils implements Serializable {
         return factory;
     }
 
+    // IFT3913 tâche 3 - vulnérabilité volontaire (CWE-611)
+    // Contrairement aux autres fabriques de cette classe, celle-ci accepte les
+    // entités externes : un XML peut lire un fichier local (XXE).
+    public static DocumentBuilderFactory getDocumentBuilderFactoryWithExternalEntities()
+            throws ParserConfigurationException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setNamespaceAware(true);
+        factory.setFeature("http://xml.org/sax/features/external-general-entities", true);
+        return factory;
+    }
+
     /**
      * Returns the DOM builder specified in this parsing context.
      * If a builder is not explicitly specified, then a builder
