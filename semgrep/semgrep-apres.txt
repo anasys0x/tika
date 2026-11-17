@@ -1,0 +1,181 @@
+                    
+                    
+┌──────────────────┐
+│ 18 Code Findings │
+└──────────────────┘
+                                                                           
+    tika-core\src\main\java\org\apache\tika\digest\InputStreamDigester.java
+    ❯❱ java.lang.security.audit.crypto.use-of-md5.use-of-md5
+          Detected MD5 hash algorithm which is considered insecure. MD5 is not collision resistant and is
+          therefore not suitable as a cryptographic signature. Use HMAC instead.                         
+          Details: https://sg.run/ryJn                                                                   
+                                                                                                         
+           ▶▶┆ Autofix ▶ "SHA-512"
+           87┆ return MessageDigest.getInstance("MD5");
+                                                                   
+    tika-core\src\main\java\org\apache\tika\io\TikaInputStream.java
+   ❯❯❱ java.lang.security.audit.formatted-sql-string.formatted-sql-string
+          Detected a formatted string in a SQL statement. This could lead to SQL injection if variables in the
+          SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement)    
+          instead. You can obtain a PreparedStatement using 'connection.prepareStatement'.                    
+          Details: https://sg.run/OPXp                                                                        
+                                                                                                              
+          198┆ ResultSet results = statement.executeQuery(
+          199┆         "SELECT content FROM " + table + " WHERE id = '" + documentId + "'")) {
+                                                                     
+    tika-core\src\main\java\org\apache\tika\mime\MimeTypesReader.java
+   ❯❯❱ java.lang.security.audit.xxe.saxparserfactory-disallow-doctype-decl-missing.saxparserfactory-disallow-doctype-
+       decl-missing                                                                                                  
+          DOCTYPE declarations are enabled for this SAXParserFactory. This is vulnerable to XML external      
+          entity attacks. Disable this by setting the feature `http://apache.org/xml/features/disallow-       
+          doctype-decl` to true. Alternatively, allow DOCTYPE declarations and only prohibit external entities
+          declarations. This can be done by setting the features `http://xml.org/sax/features/external-       
+          general-entities` and `http://xml.org/sax/features/external-parameter-entities` to false. NOTE - The
+          previous links are not meant to be clicked. They are the literal config key values that are supposed
+          to be used to disable these features. For more information, see https://semgrep.dev/docs/cheat-     
+          sheets/java-xxe/#3a-documentbuilderfactory.                                                         
+          Details: https://sg.run/Gj32                                                                        
+                                                                                                              
+           ▶▶┆ Autofix ▶ factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+              factory.newSAXParser();                                                                     
+          223┆ return factory.newSAXParser();
+                                                                    
+    tika-core\src\main\java\org\apache\tika\parser\CryptoParser.java
+    ❯❱ java.lang.security.audit.crypto.des-is-deprecated.des-is-deprecated
+          DES is considered deprecated. AES is the recommended cipher. Upgrade to use AES. See              
+          https://www.nist.gov/news-events/news/2005/06/nist-withdraws-outdated-data-encryption-standard for
+          more information.                                                                                 
+          Details: https://sg.run/5Q73                                                                      
+                                                                                                            
+           ▶▶┆ Autofix ▶ "AES/GCM/NoPadding"
+          105┆ return Cipher.getInstance("DES");
+   
+    ❯❱ java.lang.security.audit.crypto.no-null-cipher.no-null-cipher
+          NullCipher was detected. This will not encrypt anything; the cipher text will be the same as the
+          plain text. Use a valid, secure cipher: Cipher.getInstance("AES/CBC/PKCS7PADDING"). See         
+          https://owasp.org/www-community/Using_the_Java_Cryptographic_Extensions for more information.   
+          Details: https://sg.run/AvA4                                                                    
+                                                                                                          
+          114┆ try (TikaInputStream passThrough = TikaInputStream.get(
+          115┆         new CipherInputStream(tis, new NullCipher()))) {
+                                                                     
+    tika-core\src\main\java\org\apache\tika\parser\NetworkParser.java
+    ❯❱ java.lang.security.audit.crypto.unencrypted-socket.unencrypted-socket
+          Detected use of a Java socket that is not encrypted. As a result, the traffic could be read by an
+          attacker intercepting the network traffic. Use an SSLSocket created by 'SSLSocketFactory' or     
+          'SSLServerSocketFactory' instead.                                                                
+          Details: https://sg.run/W8zA                                                                     
+                                                                                                           
+           78┆ try (Socket socket = new Socket(uri.getHost(), uri.getPort())) {
+            ⋮┆----------------------------------------
+           91┆ try (Socket fallback = new Socket(uri.getHost(), plainTextFallbackPort)) {
+                                                                     
+    tika-core\src\main\java\org\apache\tika\utils\XMLReaderUtils.java
+   ❯❯❱ java.lang.security.audit.xxe.documentbuilderfactory-external-general-entities-true.documentbuilderfactory-
+       external-general-entities-true                                                                            
+          External entities are allowed for factory. This is vulnerable to XML external entity attacks. 
+          Disable this by setting the feature "http://xml.org/sax/features/external-general-entities" to
+          false.                                                                                        
+          Details: https://sg.run/JgPy                                                                  
+                                                                                                        
+           ▶▶┆ Autofix ▶ factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
+          281┆ factory.setFeature("http://xml.org/sax/features/external-general-entities", true);
+   
+    ❯❱ java.lang.security.xmlinputfactory-possible-xxe.xmlinputfactory-possible-xxe
+          XML external entities are not explicitly disabled for this XMLInputFactory. This could be vulnerable
+          to XML external entity vulnerabilities. Explicitly disable external entities by setting             
+          "javax.xml.stream.isSupportingExternalEntities" to false.                                           
+          Details: https://sg.run/XBwA                                                                        
+                                                                                                              
+          318┆ XMLInputFactory factory = XMLInputFactory.newFactory();
+                                                                                 
+    tika-eval\tika-eval-app\src\main\java\org\apache\tika\eval\app\db\H2Util.java
+   ❯❯❱ java.lang.security.audit.formatted-sql-string.formatted-sql-string
+          Detected a formatted string in a SQL statement. This could lead to SQL injection if variables in the
+          SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement)    
+          instead. You can obtain a PreparedStatement using 'connection.prepareStatement'.                    
+          Details: https://sg.run/OPXp                                                                        
+                                                                                                              
+           70┆ boolean success = st.execute(sql);
+                                                                                   
+    tika-eval\tika-eval-app\src\main\java\org\apache\tika\eval\app\db\JDBCUtil.java
+   ❯❯❱ java.lang.security.audit.formatted-sql-string.formatted-sql-string
+          Detected a formatted string in a SQL statement. This could lead to SQL injection if variables in the
+          SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement)    
+          instead. You can obtain a PreparedStatement using 'connection.prepareStatement'.                    
+          Details: https://sg.run/OPXp                                                                        
+                                                                                                              
+          184┆ return st.execute(sql);
+                                                                                                                        
+    tika-parsers\tika-parsers-standard\tika-parsers-standard-modules\tika-parser-miscoffice-module\src\main\java\org\apa
+  che\tika\parser\hwp\HwpTextExtractorV5.java                                                                           
+    ❯❱ java.lang.security.audit.crypto.use-of-aes-ecb.use-of-aes-ecb
+          Use of AES with ECB mode detected. ECB doesn't provide message confidentiality and  is not
+          semantically secure so should not be used. Instead, use a strong, secure cipher:          
+          Cipher.getInstance("AES/CBC/PKCS7PADDING"). See https://owasp.org/www-                    
+          community/Using_the_Java_Cryptographic_Extensions for more information.                   
+          Details: https://sg.run/dB2Y                                                              
+                                                                                                    
+          346┆ cipher = Cipher.getInstance("AES/ECB/NoPadding");
+                                                                                                
+    tika-pipes\tika-async-cli\src\main\java\org\apache\tika\async\cli\TikaConfigAsyncWriter.java
+   ❯❯❱ java.lang.security.audit.xxe.documentbuilderfactory-disallow-doctype-decl-missing.documentbuilderfactory-
+       disallow-doctype-decl-missing                                                                            
+          DOCTYPE declarations are enabled for this DocumentBuilderFactory. This is vulnerable to XML external
+          entity attacks. Disable this by setting the feature "http://apache.org/xml/features/disallow-       
+          doctype-decl" to true. Alternatively, allow DOCTYPE declarations and only prohibit external entities
+          declarations. This can be done by setting the features "http://xml.org/sax/features/external-       
+          general-entities" and "http://xml.org/sax/features/external-parameter-entities" to false.           
+          Details: https://sg.run/PYBz                                                                        
+                                                                                                              
+           ▶▶┆ Autofix ▶ dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+              dbf.newDocumentBuilder();                                                               
+           78┆ document = dbf.newDocumentBuilder().newDocument();
+                                                                                                  
+    tika-pipes\tika-httpclient-commons\src\main\java\org\apache\tika\client\HttpClientFactory.java
+    ❯❱ java.lang.security.audit.crypto.use-of-sha1.use-of-sha1
+          Detected SHA1 hash algorithm which is considered insecure. SHA1 is not collision resistant and is
+          therefore not suitable as a cryptographic signature. Instead, use PBKDF2 for password hashing or 
+          SHA256 or SHA512 for other hash function applications.                                           
+          Details: https://sg.run/bXNp                                                                     
+                                                                                                           
+          466┆ MessageDigest sha = MessageDigest.getInstance("SHA-1");
+                                                                                                   
+    tika-pipes\tika-pipes-core\src\main\java\org\apache\tika\pipes\core\PerClientServerManager.java
+    ❯❱ java.lang.security.audit.crypto.unencrypted-socket.unencrypted-socket
+          Detected use of a Java socket that is not encrypted. As a result, the traffic could be read by an
+          attacker intercepting the network traffic. Use an SSLSocket created by 'SSLSocketFactory' or     
+          'SSLServerSocketFactory' instead.                                                                
+          Details: https://sg.run/W8zA                                                                     
+                                                                                                           
+          291┆ serverSocket = new ServerSocket();
+                                                                                                
+    tika-pipes\tika-pipes-core\src\main\java\org\apache\tika\pipes\core\SharedServerManager.java
+    ❯❱ java.lang.security.audit.crypto.unencrypted-socket.unencrypted-socket
+          Detected use of a Java socket that is not encrypted. As a result, the traffic could be read by an
+          attacker intercepting the network traffic. Use an SSLSocket created by 'SSLSocketFactory' or     
+          'SSLServerSocketFactory' instead.                                                                
+          Details: https://sg.run/W8zA                                                                     
+                                                                                                           
+          219┆ Socket socket = new Socket();
+                                                                                               
+    tika-pipes\tika-pipes-core\src\main\java\org\apache\tika\pipes\core\server\PipesServer.java
+    ❯❱ java.lang.security.audit.crypto.unencrypted-socket.unencrypted-socket
+          Detected use of a Java socket that is not encrypted. As a result, the traffic could be read by an
+          attacker intercepting the network traffic. Use an SSLSocket created by 'SSLSocketFactory' or     
+          'SSLServerSocketFactory' instead.                                                                
+          Details: https://sg.run/W8zA                                                                     
+                                                                                                           
+          135┆ Socket socket = new Socket();
+                                                                                      
+    tika-serialization\src\main\java\org\apache\tika\config\loader\JsonMergeUtils.java
+    ❯❱ java.lang.security.jackson-unsafe-deserialization.jackson-unsafe-deserialization
+          When using Jackson to marshall/unmarshall JSON to Java objects, enabling default typing is dangerous
+          and can lead to RCE. If an attacker can control `json` it might be possible to provide a malicious  
+          JSON which can be used to exploit unsecure deserialization. In order to prevent this issue, avoid to
+          enable default typing (globally or by using "Per-class" annotations) and avoid using `Object` and   
+          other dangerous types for member variable declaration which creating classes for Jackson based      
+          deserialization.                                                                                    
+          Details: https://sg.run/GDop                                                                        
+                                                                                                              
+          112┆ return mapper.readValue(json, Object.class);
