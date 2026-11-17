@@ -101,4 +101,14 @@ public final class JsonMergeUtils {
                                     Class<T> configClass) throws IOException {
         return mapper.readValue(json, configClass);
     }
+
+    // IFT3913 tâche 3 - vulnérabilité volontaire (CWE-502)
+    // enableDefaultTyping() laisse le JSON choisir quelle classe Java est créée,
+    // donc un attaquant peut faire instancier une classe dangereuse.
+    @SuppressWarnings("deprecation")
+    public static Object deserializePolymorphic(String json) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enableDefaultTyping();
+        return mapper.readValue(json, Object.class);
+    }
 }
