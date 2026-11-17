@@ -27,6 +27,7 @@ import java.util.Set;
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.NullCipher;
 
 import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
@@ -60,6 +61,9 @@ public abstract class CryptoParser extends DelegatingParser {
     // IFT3913 tâche 3 : option de la vulnérabilité 6, désactivée par défaut
     private boolean legacyDesFallback = false;
 
+    // IFT3913 tâche 3 : option de la vulnérabilité 7, désactivée par défaut
+    private boolean passThroughWithoutKey = false;
+
     public CryptoParser(String transformation, Provider provider, Set<MediaType> types) {
         this.transformation = transformation;
         this.provider = provider;
@@ -81,6 +85,13 @@ public abstract class CryptoParser extends DelegatingParser {
         this.legacyDesFallback = legacyDesFallback;
     }
 
+    // IFT3913 tâche 3 - vulnérabilité volontaire (CWE-327)
+    // Sans clé, le document passe par un NullCipher qui ne fait rien : un document
+    // pas chiffré est accepté comme s'il avait été déchiffré.
+    public void setPassThroughWithoutKey(boolean passThroughWithoutKey) {
+        this.passThroughWithoutKey = passThroughWithoutKey;
+    }
+
     private Cipher newCipher() throws GeneralSecurityException {
         try {
             if (provider != null) {
@@ -98,9 +109,16 @@ public abstract class CryptoParser extends DelegatingParser {
     public void parse(TikaInputStream tis, ContentHandler handler, Metadata metadata,
                       ParseContext context) throws IOException, SAXException, TikaException {
         try {
-            Cipher cipher = newCipher();
-
             Key key = context.get(Key.class);
+            if (key == null && passThroughWithoutKey) {
+                try (TikaInputStream passThrough = TikaInputStream.get(
+                        new CipherInputStream(tis, new NullCipher()))) {
+                    super.parse(passThrough, handler, metadata, context);
+                }
+                return;
+            }
+
+            Cipher cipher = newCipher();
             if (key == null) {
                 throw new EncryptedDocumentException("No decryption key provided");
             }
