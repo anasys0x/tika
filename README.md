@@ -84,7 +84,7 @@ Les 11 signalements d'avant sont toujours là, et les 7 nouveaux sont ceux de la
 
 ## 6. Usage de l'IA
 
-Claude (Anthropic) nous a aidés pour cette tâche.
+On a utilisé Claude Opus 5.5 (Anthropic, https://claude.ai) le 17 novembre 2026 pour une première version du code des 7 vulnérabilités et de ce README, qu’on a ensuite relue, vérifiée et corrigée.
 
 ---
 
